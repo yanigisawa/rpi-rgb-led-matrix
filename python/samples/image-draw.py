@@ -23,26 +23,29 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
 # Configuration for the matrix
 options = RGBMatrixOptions()
-options.rows = 32
+options.rows = 16
 options.chain_length = 1
 options.parallel = 1
+options.disable_hardware_pulsing = True
 options.hardware_mapping = 'regular'  # If you have an Adafruit HAT: 'adafruit-hat'
 
 matrix = RGBMatrix(options = options)
 
 # RGB example w/graphics prims.
 # Note, only "RGB" mode is supported currently.
-image = Image.new("RGB", (32, 32))  # Can be larger than matrix if wanted!!
+image = Image.new("RGB", (16, 32))  # Can be larger than matrix if wanted!!
 draw = ImageDraw.Draw(image)  # Declare Draw instance before prims
 # Draw some shapes into image (no immediate effect on matrix)...
 draw.rectangle((0, 0, 31, 31), fill=(0, 0, 0), outline=(0, 0, 255))
-draw.line((0, 0, 31, 31), fill=(255, 0, 0))
-draw.line((0, 31, 31, 0), fill=(0, 255, 0))
+draw.line((0, 0, 15, 31), fill=(255, 0, 0))
+draw.line((0, 15, 31, 0), fill=(0, 255, 0))
 
+m = 0
 # Then scroll image across matrix...
-for n in range(-32, 33):  # Start off top-left, move off bottom-right
+for n in range(-15, 15):  # Start off top-left, move off bottom-right
+    m = n * 2
     matrix.Clear()
-    matrix.SetImage(image, n, n)
-    time.sleep(0.05)
+    matrix.SetImage(image, m, n)
+    time.sleep(0.10)
 
 matrix.Clear()

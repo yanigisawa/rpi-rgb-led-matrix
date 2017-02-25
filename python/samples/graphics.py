@@ -11,18 +11,21 @@ class GraphicsTest(SampleBase):
     def run(self):
         canvas = self.matrix
         font = graphics.Font()
-        font.LoadFont("../../fonts/7x13.bdf")
+        font.LoadFont("../../fonts/4x6.bdf")
 
-        red = graphics.Color(255, 0, 0)
-        graphics.DrawLine(canvas, 5, 5, 22, 13, red)
+        # red = graphics.Color(255, 0, 0)
+        # graphics.DrawLine(canvas, 5, 5, 22, 13, red)
 
-        green = graphics.Color(0, 255, 0)
-        graphics.DrawCircle(canvas, 15, 15, 10, green)
+        # green = graphics.Color(0, 255, 0)
+        # graphics.DrawCircle(canvas, 15, 15, 10, green)
 
         blue = graphics.Color(0, 0, 255)
-        graphics.DrawText(canvas, font, 2, 10, blue, "Text")
+        green = graphics.Color(0, 255, 0)
+        graphics.DrawText(canvas, font, 0, 5, blue, "one two")
+        graphics.DrawText(canvas, font, 0, 12, green, "three four")
 
-        time.sleep(10)   # show display for 10 seconds before exit
+        while True:
+            time.sleep(10)   # show display for 10 seconds before exit
 
 
 # Main function
